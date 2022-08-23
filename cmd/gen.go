@@ -40,12 +40,9 @@ func gen(source, currentPath, ext string) error {
 	path := filepath.Join(currentPath, filepath.Base(currentPath))
 
 	savePath := path + ext
-	i := 1
-	for _, err := os.Stat(savePath); err == nil; _, err = os.Stat(savePath) {
-		tmpPath := fmt.Sprintf("%v%v%v", path, i, ext)
-		fmt.Printf("%v exists. Rename to %v\n", filepath.Base(savePath), filepath.Base(tmpPath))
-		savePath = tmpPath
-		i++
+	if _, err := os.Stat(savePath); err == nil {
+		fmt.Printf("%v already exists, do nothing!\n", filepath.Base(savePath))
+		return err
 	}
 
 	err := ioutil.WriteFile(savePath, []byte(source), 0644)

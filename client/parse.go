@@ -158,5 +158,14 @@ func (c *Client) Parse(info Info) (problems []string, paths []string, err error)
 		}(problemID, paths[i])
 	}
 	wg.Wait()
+
+	// create READEME per contest
+	filename := contestPath + "/README.md"
+	if _, err := os.Stat(filename); err != nil {
+		README, _ := os.Create(filename)
+		README.Close()
+		ansi.Printf(color.CyanString("Create file: %v\n"), color.GreenString(filename))
+	}
+
 	return
 }

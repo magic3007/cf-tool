@@ -22,10 +22,12 @@ type ParsedArgs struct {
 	Handle    string   `docopt:"<handle>"`
 	Version   string   `docopt:"{version}"`
 	Config    bool     `docopt:"config"`
+	S         bool     `docopt:"s"`
 	Submit    bool     `docopt:"submit"`
 	List      bool     `docopt:"list"`
 	Parse     bool     `docopt:"parse"`
 	Gen       bool     `docopt:"gen"`
+	T         bool     `docopt:"t"`
 	Test      bool     `docopt:"test"`
 	Watch     bool     `docopt:"watch"`
 	Open      bool     `docopt:"open"`

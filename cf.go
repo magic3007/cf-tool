@@ -15,7 +15,7 @@ import (
 	docopt "github.com/docopt/docopt-go"
 )
 
-const version = "v1.0.0"
+const version = "v1.0.3"
 const configPath = "~/.cf/config"
 const sessionPath = "~/.cf/session"
 
@@ -29,10 +29,12 @@ If you want to compete, the best command is "cf race"
 
 Usage:
   cf config
+  cf s [-f <file>] [<specifier>...]
   cf submit [-f <file>] [<specifier>...]
   cf list [<specifier>...]
   cf parse [<specifier>...]
   cf gen [<alias>]
+  cf t [<file>]
   cf test [<file>]
   cf watch [all] [<specifier>...]
   cf open [<specifier>...]
@@ -63,7 +65,7 @@ Examples:
   cf submit            cf will detect what you want to submit automatically.
   cf submit -f a.cpp
   cf submit https://codeforces.com/contest/100/A
-  cf submit -f a.cpp 100A 
+  cf submit -f a.cpp 100A
   cf submit -f a.cpp 100 a
   cf submit contest 100 a
   cf submit gym 100001 a

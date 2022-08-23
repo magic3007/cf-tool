@@ -25,6 +25,8 @@ func Eval(opts docopt.Opts) error {
 	}
 	if Args.Config {
 		return Config()
+	} else if Args.S {
+		return Submit()
 	} else if Args.Submit {
 		return Submit()
 	} else if Args.List {
@@ -33,6 +35,8 @@ func Eval(opts docopt.Opts) error {
 		return Parse()
 	} else if Args.Gen {
 		return Gen()
+	} else if Args.T {
+		return Test()
 	} else if Args.Test {
 		return Test()
 	} else if Args.Watch {

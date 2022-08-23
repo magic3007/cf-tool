@@ -41,10 +41,27 @@ Then enjoy the cf-tool~
 Or you can compile it from the source **(go >= 1.12)**:
 
 ```plain
-$ go get github.com/xalanq/cf-tool
-$ cd $GOPATH/src/github.com/xalanq/cf-tool
-$ go build -ldflags "-s -w" cf.go
+go env -w GO111MODULE=auto
+go get github.com/xalanq/cf-tool
 ```
+
+add `~/go/src/github.com/xalanq/cf-tool` in your path, and replace cf-tool by this repo, then
+
+```plain
+cd ~/go/src/github.com/xalanq/cf-tool
+go build -ldflags "-s -w" cf.go
+```
+
+> You may need `sudo add-apt-repository ppa:longsleep/golang-backports -y` to install lastest version of golang for Ubuntu
+
+## Refine
+
+- adapt new codeforces input format
+- add support for C++17 64 bit and C++ 20
+- refine: do nothing when cf race xxx if *.cpp already exists
+- abbreviation: `cf t` means `cf test` and `cf s` means `cf submit`
+- auto gen `README.md` per contest
+- release binary in Mac X64 and used for Mac M1
 
 If you don't know what's the `$GOPATH`, please see here <https://github.com/golang/go/wiki/GOPATH>.
 
@@ -62,27 +79,27 @@ If the contest has not started yet, `cf` will count down. If the contest have st
 
 Enter the directory of problem A, the directory should contain all samples of the problem.
 
- `cf gen` 
+ `cf gen`
 
 Generate a code with the default template. The filename of the code is problem id by default.
 
- `vim a.cpp` 
+ `vim a.cpp`
 
 Use Vim to write the code (It depends on yourself).
 
- `cf test` 
+ `cf test`
 
 Compile and test all samples.
 
- `cf submit` 
+ `cf submit`
 
 Submit the code.
 
- `cf list` 
+ `cf list`
 
 List problems' stats of the contest.
 
- `cf stand` 
+ `cf stand`
 
 Open the standings' page of the contest.
 
@@ -94,10 +111,12 @@ If you want to compete, the best command is "cf race".
 
 Usage:
   cf config
+  cf s [-f <file>] [<specifier>...]
   cf submit [-f <file>] [<specifier>...]
   cf list [<specifier>...]
   cf parse [<specifier>...]
   cf gen [<alias>]
+  cf t [<file>]
   cf test [<file>]
   cf watch [all] [<specifier>...]
   cf open [<specifier>...]
@@ -128,7 +147,7 @@ Examples:
   cf submit            cf will detect what you want to submit automatically.
   cf submit -f a.cpp
   cf submit https://codeforces.com/contest/100/A
-  cf submit -f a.cpp 100A 
+  cf submit -f a.cpp 100A
   cf submit -f a.cpp 100 a
   cf submit contest 100 a
   cf submit gym 100001 a
@@ -242,7 +261,7 @@ typedef long long ll;
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
-    
+
     return 0;
 }
 ```

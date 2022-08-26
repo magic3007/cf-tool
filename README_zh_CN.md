@@ -1,17 +1,19 @@
 # Codeforces Tool
 
-[![Github release](https://img.shields.io/github/release/xalanq/cf-tool.svg)](https://github.com/xalanq/cf-tool/releases)
-[![platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-blue.svg)](https://github.com/xalanq/cf-tool/releases)
-[![Build Status](https://travis-ci.org/xalanq/cf-tool.svg?branch=master)](https://travis-ci.org/xalanq/cf-tool)
-[![Go Report Card](https://goreportcard.com/badge/github.com/xalanq/cf-tool)](https://goreportcard.com/report/github.com/xalanq/cf-tool)
+[![Github release](https://img.shields.io/github/release/izlyforever/cf-tool.svg)](https://github.com/izlyforever/cf-tool/releases)
+[![platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-blue.svg)](https://github.com/izlyforever/cf-tool/releases)
+[![Build Status](https://travis-ci.org/izlyforever/cf-tool.svg?branch=master)](https://travis-ci.org/izlyforever/cf-tool)
+[![Go Report Card](https://goreportcard.com/badge/github.com/izlyforever/cf-tool)](https://goreportcard.com/report/github.com/izlyforever/cf-tool)
 [![Go Version](https://img.shields.io/badge/go-%3E%3D1.12-green.svg)](https://github.com/golang)
-[![license](https://img.shields.io/badge/license-MIT-%23373737.svg)](https://raw.githubusercontent.com/xalanq/cf-tool/master/LICENSE)
+[![license](https://img.shields.io/badge/license-MIT-%23373737.svg)](https://raw.githubusercontent.com/izlyforever/cf-tool/master/LICENSE)
 
 Codeforces Tool 是 [Codeforces](https://codeforces.com) 的命令行界面的工具。
 
 这玩意儿挺快、挺小、挺强大，还跨平台哦。
 
 [安装](#安装) | [使用方法](#使用方法) | [常见问题](#常见问题) | [English](./README.md)
+
+> 为了可以自包含，我把所有 xalanq 都无耻的替换了成 izlyforever，抱歉，侵删
 
 ## 特点
 
@@ -34,19 +36,32 @@ Codeforces Tool 是 [Codeforces](https://codeforces.com) 的命令行界面的�
 
 ## 安装
 
-你可以从[这里](https://github.com/xalanq/cf-tool/releases)直接下载一个可执行文件。
+你可以从[这里](https://github.com/izlyforever/cf-tool/releases)直接下载一个可执行文件。
 
 然后就能直接用啦~
 
 或者你可以把整个 repo 给 clone 下来，然后自己编译 (go >= 1.12)：
 
 ```plain
-$ go get github.com/xalanq/cf-tool
-$ cd $GOPATH/src/github.com/xalanq/cf-tool
-$ go build -ldflags "-s -w" cf.go
+go env -w GO111MODULE=auto
+go get github.com/izlyforever/cf-tool
+cd ~/go/src/github.com/izlyforever/cf-tool
+go env -w CGO_ENABLED="0"
+go build -ldflags "-s -w" cf.go
 ```
 
+add `~/go/src/github.com/izlyforever/cf-tool` in your path, and replace cf-tool by this repo, then
+
 如果你不知道 `$GOPATH` 是什么，请看一下这篇文章 <https://github.com/golang/go/wiki/GOPATH>.
+
+## Refine
+
+- 适配了 codeforces 的新模式
+- 添加了 C++17 64 bit 和 C++ 20 的支持
+- 优化：如果要生成的文件本身就存在就忽略，啥也不做
+- 缩写：`cf test` 和 `cf submit` 出现的很频繁，所以提供下缩写 `cf t` 和 `cf s`
+- 自动为每一场生成 `README.md` 可以写一些题解或者心得
+- 提供 Mac、Win、Linux 的二进制文件（对 Mac M1 用户特别有必要）
 
 ## 使用方法
 
@@ -62,27 +77,27 @@ $ go build -ldflags "-s -w" cf.go
 
 进入 A 题的目录，此时该目录下会包含该题的样例。
 
- `cf gen` 
+ `cf gen`
 
 用默认模板生成一份代码，代码文件名默认是题目的 ID。
 
- `vim a.cpp` 
+ `vim a.cpp`
 
 用 Vim 写代码（这取决于你）。
 
- `cf test` 
+ `cf test`
 
 编译并测试样例。
 
- `cf submit` 
+ `cf submit`
 
 提交代码。
 
- `cf list` 
+ `cf list`
 
 查看当前比赛各个题目的信息。
 
- `cf stand` 
+ `cf stand`
 
 用浏览器打开榜单，查看排名。
 
@@ -126,12 +141,12 @@ $ go build -ldflags "-s -w" cf.go
   cf submit            cf 会自动检测你需要提交的文件。
   cf submit -f a.cpp
   cf submit https://codeforces.com/contest/100/A
-  cf submit -f a.cpp 100A 
+  cf submit -f a.cpp 100A
   cf submit -f a.cpp 100 a
   cf submit contest 100 a
   cf submit gym 100001 a
   cf list              列出当前比赛的题目通过、时限等信息。
-  cf list 1119         
+  cf list 1119
   cf parse 100         获取 contest 100 的所有题目的样例到文件夹
                        "{cf}/{contest}/100/" 中。
   cf parse gym 100001a
@@ -158,7 +173,7 @@ $ go build -ldflags "-s -w" cf.go
   cf pull 100 a        拉取比赛 id 为 100 的题目 a 的最新代码到文件夹 "./100/a" 下。
   cf pull ac 100 a     拉取比赛 id 为 100 的题目 a 的 AC 代码。
   cf pull              拉取当前题目的最新代码到当前文件夹下。
-  cf clone xalanq      拉取 xalanq 的所有提交代码。
+  cf clone izlyforever      拉取 izlyforever 的所有提交代码。
   cf upgrade           从 GitHub 更新 "cf" 到最新版。
 
 储存的文件:
@@ -172,7 +187,7 @@ $ go build -ldflags "-s -w" cf.go
 模板:
   你可以在你的代码里插入一些标识符，当用 cf 生成代码的时候，标识符会按照以下规则替换：
 
-  $%U%$   用户名 (例如 xalanq)
+  $%U%$   用户名 (例如 izlyforever)
   $%Y%$   年  (例如 2019)
   $%M%$   月  (例如 04)
   $%D%$   日  (例如 09)
@@ -189,8 +204,8 @@ $ go build -ldflags "-s -w" cf.go
   在 "script" 里你必须要运行你的程序，通过标准 IO 来输入/输出数据（不用重定向）。
 
   你在这些脚本命令里也能插入一些标识符，这些标识符会按照以下规则替换：
-  
-  $%path%$   代码的路径 (不包括 $%full%$， 比如 "/home/xalanq/")
+
+  $%path%$   代码的路径 (不包括 $%full%$， 比如 "/home/izlyforever/")
   $%full%$   代码的文件名 (比如 "a.cpp")
   $%file%$   代码的文件名 (不包括后缀，比如 "a")
   $%rand%$   一个长度为 8 的随机字符串 (只包括 "a-z" "0-9" 范围内的字符)
@@ -201,7 +216,7 @@ $ go build -ldflags "-s -w" cf.go
 当这份模板被 `cf gen` 生成时，模板内部的占位符会替换成相应的内容。
 
 ```
-$%U%$   用户名 (例如 xalanq)
+$%U%$   用户名 (例如 izlyforever)
 $%Y%$   年  (例如 2019)
 $%M%$   月  (例如 04)
 $%D%$   日  (例如 09)
@@ -212,7 +227,7 @@ $%s%$   秒  (例如 00)
 
 ```cpp
 /* Generated by powerful Codeforces Tool
- * You can download the binary file in here https://github.com/xalanq/cf-tool (Windows, macOS, Linux)
+ * You can download the binary file in here https://github.com/izlyforever/cf-tool (Windows, macOS, Linux)
  * Author: $%U%$
  * Time: $%Y%$-$%M%$-$%D%$ $%h%$:$%m%$:$%s%$
 **/
@@ -225,7 +240,7 @@ typedef long long ll;
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
-    
+
     return 0;
 }
 ```

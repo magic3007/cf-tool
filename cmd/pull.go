@@ -3,7 +3,7 @@ package cmd
 import (
 	"os"
 
-	"github.com/izlyforever/cf-tool/client"
+	"github.com/magic3007/cf-tool/client"
 )
 
 // Pull command

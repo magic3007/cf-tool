@@ -3,8 +3,8 @@ package cmd
 import (
 	"github.com/fatih/color"
 	"github.com/skratchdot/open-golang/open"
-	"github.com/izlyforever/cf-tool/client"
-	"github.com/izlyforever/cf-tool/config"
+	"github.com/magic3007/cf-tool/client"
+	"github.com/magic3007/cf-tool/config"
 )
 
 func openURL(url string) error {

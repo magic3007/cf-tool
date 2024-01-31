@@ -3,8 +3,8 @@ package cmd
 import (
 	"io/ioutil"
 
-	"github.com/izlyforever/cf-tool/client"
-	"github.com/izlyforever/cf-tool/config"
+	"github.com/magic3007/cf-tool/client"
+	"github.com/magic3007/cf-tool/config"
 )
 
 // Submit command

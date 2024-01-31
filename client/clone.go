@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/fatih/color"
-	"github.com/izlyforever/cf-tool/util"
+	"github.com/magic3007/cf-tool/util"
 )
 
 type cloneData struct {

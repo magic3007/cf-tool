@@ -3,8 +3,8 @@ package cmd
 import (
 	"time"
 
-	"github.com/izlyforever/cf-tool/client"
-	"github.com/izlyforever/cf-tool/config"
+	"github.com/magic3007/cf-tool/client"
+	"github.com/magic3007/cf-tool/config"
 )
 
 // Race command
